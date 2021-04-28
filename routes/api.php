@@ -17,3 +17,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('register',[App\Http\Controllers\ApiController::class,'register']);
+Route::post('login',[App\Http\Controllers\ApiController::class,'login']);
+
+Route::any('Unauthorized',function(){
+
+      return response(['message'=>'Invalid Api Key or Token','status'=>0]);
+
+})->name('apifails');
+
+
+
+Route::prefix('todo')->middleware('auth:api')->group(function(){
+
+       Route::post('/add',[App\Http\Controllers\TaskController::class, 'add']);
+       Route::post('/status',[App\Http\Controllers\TaskController::class, 'status']);
+
+
+});
