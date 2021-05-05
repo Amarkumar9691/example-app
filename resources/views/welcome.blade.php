@@ -17,13 +17,26 @@
                      </div>
                     
                 </div>
-                <div class="card-footer text-center">
+                @if(Auth::user())
+                    <div class="card-footer text-center">
+                    <a href="{{ route('home') }}" class="btn btn-dark">Go to Main Dashboard</a>
+                    
+
+                        
+                    
+                </div>
+                     
+                @else
+                 <div class="card-footer text-center">
                     <a href="{{ route('login') }}" class="btn btn-dark">User Login</a>
                     <a href="{{ route('register') }}" class="btn btn-primary">New Registration</a>
 
                         
                     
                 </div>
+
+                @endif
+               
             
             </div>
         </div>
